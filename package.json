@@ -4,7 +4,8 @@
   "description": "Travel calc to track Right to Work states",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/J-Fartz/rightToWork/issues"
   },
-  "homepage": "https://github.com/J-Fartz/rightToWork#readme"
+  "homepage": "https://github.com/J-Fartz/rightToWork#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
