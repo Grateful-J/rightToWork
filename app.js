@@ -1,8 +1,22 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
 require("dotenv").config();
 
-const mongoose = require("mongoose");
+
+// Middle-ware for JSON in API
+app.use(express.json());
+
+// API "GET" Commands
+app.get("/", (req, res) => {
+    res.send("Hello from node API! updated");
+  });
+
+// API "POST" Commands
+app.post("/api/products", (req, res) =>{
+    res.send(req.body);
+
+})
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -17,6 +31,3 @@ mongoose
     console.log("Error: Connecting to Database");
   });
 
-app.get("/", (req, res) => {
-  res.send("Hello from node API! updated x3");
-});
