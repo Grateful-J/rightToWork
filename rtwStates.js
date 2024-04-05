@@ -1,0 +1,32 @@
+// List of Right to Work States
+const rtwStates = [
+  "Arizona",
+  "Alabama",
+  "Arkansas",
+  "Florida",
+  "Idaho",
+  "Georgia",
+  "Indiana",
+  "Kansas",
+  "Iowa",
+  " Kentucky",
+  "Michigan",
+  "Louisiana",
+  " Mississippi",
+  "Nebraska",
+  "Missouri",
+  "Nevada",
+  "North Dakota",
+  "North Carolina",
+  "Oklahoma",
+  "South Dakota",
+  "South Carolina",
+  "Tennessee",
+  "Utah",
+  "Virginia",
+  "Texas",
+  "Wisconsin",
+  "Wyoming",
+];
+
+module.exports = rtwStates;
