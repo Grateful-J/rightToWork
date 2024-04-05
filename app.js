@@ -3,21 +3,20 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-
 // Middle-ware for JSON in API
 app.use(express.json());
 
 // API "GET" Commands
 app.get("/", (req, res) => {
-    res.send("Hello from node API! updated");
-  });
+  res.send("Hello from node API! updated");
+});
 
 // API "POST" Commands
-app.post("/api/products", (req, res) =>{
-    res.send(req.body);
+app.post("/api/products", (req, res) => {
+  res.send(req.body);
+});
 
-})
-
+// Connects to Mongo DB using secure credentials
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
@@ -30,4 +29,3 @@ mongoose
   .catch(() => {
     console.log("Error: Connecting to Database");
   });
-
