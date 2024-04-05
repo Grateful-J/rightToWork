@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const rtwStates = require("rtwStates.js"); // pulls array of Right to Work States
+const rtwStates = require("../utils/rtwStates"); // Adjusted for a utils directory
 
 const jobSchema = new mongoose.Schema({
-  jobname: String,
+  jobName: String, 
   client: String,
   location: String,
   startDate: Date,
@@ -11,7 +11,7 @@ const jobSchema = new mongoose.Schema({
   isRTW: { type: Boolean, default: false },
 });
 
-//Pre-save hook to set isRTW to "true"
+// Pre-save hook to set isRTW based on location
 jobSchema.pre("save", function (next) {
   this.isRTW = rtwStates.includes(this.location);
   next();
