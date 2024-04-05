@@ -1,0 +1,19 @@
+{
+  "name": "righttowork",
+  "version": "1.0.0",
+  "description": "Travel calc to track Right to Work states",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J-Fartz/rightToWork.git"
+  },
+  "author": "J-Fartz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J-Fartz/rightToWork/issues"
+  },
+  "homepage": "https://github.com/J-Fartz/rightToWork#readme"
+}
