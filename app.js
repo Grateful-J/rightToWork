@@ -12,6 +12,18 @@ app.get("/", (req, res) => {
   res.send("Hello from node API! updated");
 });
 
+// API "GET" Products
+app.get("/api/products", async (req, res) => {
+    try{
+        const products = await Product.find({});
+        res.status(200).json(products)
+
+    } catch(error) {
+        res.status(500).json({message: error.message});
+
+    }
+});
+
 // API "POST" Commands
 app.post("/api/products",async (req, res) => {
   try {
