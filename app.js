@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Product = require('./models/product.model');
+const Job = require('/models/jobs.model');
 require("dotenv").config();
 
 // Middle-ware for JSON in API
