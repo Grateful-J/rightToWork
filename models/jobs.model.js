@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const rtwStates = require("./rtwStates"); // pulls array of Right to Work States
+const rtwStates = require("rtwStates.js"); // pulls array of Right to Work States
 
 const jobSchema = new mongoose.Schema({
   jobname: String,

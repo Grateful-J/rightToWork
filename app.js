@@ -2,11 +2,25 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Product = require('./models/product.model');
-const Job = require('/models/jobs.model');
+const Job = require('./models/jobs.model');
 require("dotenv").config();
 
 // Middle-ware for JSON in API
 app.use(express.json());
+
+// Example: Creating a new job
+const newJob = new Job({
+    jobName: "Example Job",
+    client: "Example Client",
+    location: "Arizona",
+    startDate: new Date(),
+    endDate: new Date(),
+    travelDays: 2,
+  });
+  
+  newJob.save()
+    .then(savedJob => console.log(savedJob))
+    .catch(err => console.error(err));
 
 // API "GET" Commands
 app.get("/", (req, res) => {
