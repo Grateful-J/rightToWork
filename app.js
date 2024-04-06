@@ -79,8 +79,8 @@ app.listen(port, () => {
 })
 
 //Connects to front end
-const onSave = (job) => {
-    fetch('/api/jobs' {
+function onSave(job) {
+    fetch('/api/jobs', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -90,12 +90,13 @@ const onSave = (job) => {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-
+        // Optionally: Refresh the job list to show the new job
     })
     .catch((error) => {
-        console.log('Error', error)
+        console.error('Error:', error);
     });
 }
+
 
 // Connects to Mongo DB using secure credentials
 mongoose
