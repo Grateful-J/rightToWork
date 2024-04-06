@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 const Product = require("./models/product.model");
@@ -61,6 +62,20 @@ app.delete("/api/jobs/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+// Serve static files from React client app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+//Catch All handler, if doesnt match above, send back to Reach index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'))
+}):
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`)
+})
+
 
 // Connects to Mongo DB using secure credentials
 mongoose
