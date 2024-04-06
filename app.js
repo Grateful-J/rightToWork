@@ -35,7 +35,7 @@ app.post("/api/jobs", async (req, res) => {
 });
 
 // Updates new job
-app.patch("api/jobs/:id", async (req, res) => {
+app.patch("/api/jobs/:id", async (req, res) => {
   try {
     const job = await Job.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -44,6 +44,19 @@ app.patch("api/jobs/:id", async (req, res) => {
       return res.status(404).json({ message: "Job not found" });
     }
     res.status(200).json(job);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// DELETEs Jobs
+app.delete("/api/jobs/:id", async (req, res) => {
+  try {
+    const job = await Job.findByIdAndDelete(req.params.id);
+    if (!job) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+    res.status(204).send();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
