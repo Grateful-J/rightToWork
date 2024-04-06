@@ -69,7 +69,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 //Catch All handler, if doesnt match above, send back to Reach index.html
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'))
-}):
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
@@ -82,9 +82,6 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Connected to Database");
-    app.listen(3000, () => {
-      console.log("Server is running, yo! on port 3000");
-    });
   })
 
   .catch(() => {
