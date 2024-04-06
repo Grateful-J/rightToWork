@@ -6,6 +6,21 @@ const Product = require("./models/product.model");
 const Job = require("./models/jobs.model");
 require("dotenv").config();
 
+import React from 'react';
+import JobList from './client/src/components/JobList';
+import JobForm from './client/src/components/JobForm';
+
+function App() {
+    return (
+        <div>
+            <h1>Job Tracker</h1>
+            <JobForm onSave={job => console.log(job)} />
+            <JobList />
+        </div>
+    );
+}
+
+
 // Middle-ware for JSON in API
 app.use(express.json());
 
