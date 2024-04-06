@@ -76,6 +76,24 @@ app.listen(port, () => {
   console.log(`Server is listening on port ${port}`)
 })
 
+//Connects to front end
+const onSave = (job) => {
+    fetch('/api/jobs' {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(job),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+
+    })
+    .catch((error) => {
+        console.log('Error', error)
+    });
+}
 
 // Connects to Mongo DB using secure credentials
 mongoose
