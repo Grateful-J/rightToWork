@@ -28,3 +28,24 @@ async function addJob(job) {
     console.error("Failed to add job", error);
   }
 }
+
+
+async function editJob(job){
+    try {
+        const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(job),
+        });
+        if (response.ok) {
+            console.log("Job updated successfully");
+        } else {
+            console.error("Failed to update job");
+        }   
+    }
+    catch (error) {
+        console.error("Failed to update job", error);
+    }
+}
