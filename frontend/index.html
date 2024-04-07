@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,44 +7,44 @@
     <title>Vite App</title>
   </head>
   <body>
-   
     <script type="module" src="/main.js"></script>
 
     <div id="app">
-    <div id="jobs-container"></div>
+      <div id="jobs-container"></div>
 
-    <!-- Form for adding jobs--> 
-    <form id="job-form">
-      <input type="text" id="jobName" placeholder="Job Name" required />
-      <input type="text" id="client" placeholder="Client" required />
-      <input type="text" id="location" placeholder="Location" required />
-      <div> 
-      <label for="startDate"> Start Date:</label>
-      <input type="date" id="startDate" required />
-      <label for="endDate"> End Date:</label>
-      <input type="date" id="endDate" required />
-      </div>
-      <button type="submit">Add Job</button>
-  </form>
-  </div>
+      <!-- Form for adding jobs-->
+      <form id="job-form">
+        <input type="text" id="jobName" placeholder="Job Name" required />
+        <input type="text" id="client" placeholder="Client" required />
+        <input type="text" id="location" placeholder="Location" required />
+        <div>
+          <label for="startDate"> Start Date:</label>
+          <input type="date" id="startDate" required />
+          <label for="endDate"> End Date:</label>
+          <input type="date" id="endDate" required />
+        </div>
+        <button type="submit">Add Job</button>
+      </form>
+    </div>
 
-  <div>
-      <!-- Display jobs --> 
-      <thead>
-        <tr>
-        <th>Job Name</th>
-        <th>Client</th>
-        <th>Location</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Travel Days</th>
-        <th>RTW</th>
-        </tr>
+    <div>
+      <!-- Display jobs -->
+      <table id="jobs-table">
+        <thead>
+          <tr>
+            <th>Job Name</th>
+            <th>Client</th>
+            <th>Location</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <!-- <th>Travel Days</th> -->
+            <th>RTW</th>
+          </tr>
         </thead>
         <tbody id="jobs-container">
-          <!-- Display jobs here -->
+          <!-- Displays jobs here -->
         </tbody>
-        </table>
-  </div>
+      </table>
+    </div>
   </body>
 </html>

@@ -58,18 +58,18 @@ async function fetchJobs() {
 //displays job and adds styling using tailwind CSS
 function displayJobs(jobs) {
   const container = document.querySelector("#jobs-container");
-  container.innerHTML = '', //clear exisiting jobs
+  container.innerHTML = ''; // Clear existing jobs
+
   jobs.forEach((job) => {
-    const jobDiv = document.createElement("div");
-    jobDiv.innerHTML = `
-      <h3>${job.jobName}</h3>
-      <p>Client: ${job.client}</p>
-      <p>Location: ${job.location}</p>
-      <p>Start Date: ${job.startDate}</p>
-      <p>End Date: ${job.endDate}</p>
-      <p>Travel Days: ${job.travelDays}</p>
-      <p>RTW: ${job.isRTW ? "Yes" : "No"}</p>
+    const row = container.insertRow();
+    row.innerHTML = `
+      <td>${job.jobName}</td>
+      <td>${job.client}</td>
+      <td>${job.location}</td>
+      <td>${new Date(job.startDate).toLocaleDateString()}</td>
+      <td>${new Date(job.endDate).toLocaleDateString()}</td>
+      <td>${job.isRTW ? "Yes" : "No"}</td>
     `;
-    container.appendChild(jobDiv);
   });
 }
+
