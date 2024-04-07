@@ -21,14 +21,7 @@ document.querySelector("#job-form").addEventListener("submit", addJob);
 async function addJob(event) {
   event.preventDefault();
 
-  
-
-  //Validate Location based on location input
-  /* if(!validStates.includes(locationInput)) {
-    alert("Please enter a valid state");
-    return;
-  }  */
-
+  // Get values from form
   const job = {
     jobName: document.querySelector("#jobName").value,
     client: document.querySelector("#client").value,
@@ -39,6 +32,7 @@ async function addJob(event) {
     //isRTW: document.querySelector("#isRTW").checked,
   };
 
+  // Add job to database
   try {
     const response = await fetch(`${apiBaseUrl}/api/jobs`, {
       method: "POST",
@@ -59,6 +53,7 @@ async function addJob(event) {
   }
 }
 
+//GET all jobs
 async function fetchJobs() {
   try {
     const response = await fetch(`${apiBaseUrl}/api/jobs`);
@@ -106,7 +101,7 @@ async function deleteJob(jobId) {
   }
 }
 
-//displays counter of Right to Work days
+//Displays Counter of Right to Work days
 function updateCounters(jobs) {
   let rtwDays = 0;
   let nonRtwDays = 0;
@@ -128,7 +123,7 @@ function updateCounters(jobs) {
   ).textContent = `Non-RTW Days: ${nonRtwDays}`;
 }
 
-//displays job and adds styling using tailwind CSS
+//Display Jobs
 function displayJobs(jobs) {
   const container = document.querySelector("#jobs-container");
   container.innerHTML = ""; // Clear existing jobs
