@@ -70,6 +70,7 @@ function updateCounters(jobs) {
       nonRtwDays += days;
     }
   });
+  
 
   document.getElementById("rtw-counter").textContent = `RTW Days: ${rtwDays}`;
   document.getElementById("non-rtw-counter").textContent = `Non-RTW Days: ${nonRtwDays}`;
@@ -92,7 +93,7 @@ function displayJobs(jobs) {
     `;
   });
 
-  
+ 
   updateCounters(jobs);
 
 }
