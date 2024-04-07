@@ -122,6 +122,7 @@ function displayJobs(jobs) {
       <td>${new Date(job.startDate).toLocaleDateString()}</td>
       <td>${new Date(job.endDate).toLocaleDateString()}</td>
       <td>${job.isRTW ? "Yes" : "No"}</td>
+      <td>${daysWorked}</td>
       <td>
     <button onclick="deleteJob('${job._id}')" class="delete-btn">Delete</button>
   </td>
