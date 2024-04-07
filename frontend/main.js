@@ -62,6 +62,24 @@ async function fetchJobs() {
   }
 }
 
+
+//DELETE job 
+async function deleteJob(jobId){
+  try{
+    const response = await fetch(`${apiBaseUrl}/api/jobs/${jobId}`, {
+      method: "DELETE",
+    });
+    if(response.ok){
+      console.log("Job deleted successfully");
+      fetchJobs();
+    } else {
+      console.error("Failed to delete job");
+    }
+  } catch(error){
+    console.error("Failed to delete job", error);
+  }
+}
+
 //displays counter of Right to Work days
 function updateCounters(jobs) {
   let rtwDays = 0;
@@ -106,3 +124,4 @@ function displayJobs(jobs) {
 
   updateCounters(jobs);
 }
+
