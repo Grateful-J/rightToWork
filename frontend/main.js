@@ -44,7 +44,7 @@ async function addJob(event) {
 
 async function fetchJobs() {
   try {
-    const response = await fetch("/api/jobs");
+    const response = await fetch("http://localhost:3000/api/jobs");
     const jobs = await response.json();
     displayJobs(jobs);
   } catch (error) {
