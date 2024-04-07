@@ -1,4 +1,5 @@
 import "./style.css";
+import "./utils/states";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
