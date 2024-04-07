@@ -21,7 +21,7 @@ document.querySelector("#job-form").addEventListener("submit", addJob);
 async function addJob(event) {
   event.preventDefault();
 
-  const locationInput = document.querySelector("#location").value;
+  
 
   //Validate Location based on location input
   /* if(!validStates.includes(locationInput)) {
