@@ -51,3 +51,5 @@ const states = [
     "Wisconsin",
     "Wyoming",
 ];
+
+// module.export = states;

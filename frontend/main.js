@@ -2,8 +2,9 @@ import "./style.css";
 import "./utils/states";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const response = await fetch(`${apiBaseUrl}/api/jobs`);
-//To-Do- figure out why below bricks the code.
-//const validStates = import.meta.env.VITE_VALID_STATES.split(",").map((state) => state.trim());//creates array of valid states from imported states.js
+
+//creates array of validStates from imported states.js
+//const validStates = states;
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchJobs();
@@ -14,13 +15,13 @@ document.querySelector("#job-form").addEventListener("submit", addJob);
 async function addJob(event) {
   event.preventDefault();
 
-  /* const locationInput = document.querySelector("#location").value;
+   const locationInput = document.querySelector("#location").value;
 
   //Validate Location based on location input
-  if(!validStates.includes(locationInput)){
+  /* if(!validStates.includes(locationInput)) {
     alert("Please enter a valid state");
     return;
-  } */
+  }  */
 
   const job = {
     jobName: document.querySelector("#jobName").value,
@@ -62,6 +63,26 @@ async function fetchJobs() {
   }
 }
 
+//EDIT Job
+async function editJob(jobId) {
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/jobs/${jobId}`);
+    const job = await response.json();
+    document.querySelector("#jobName").value = job.jobName;
+    document.querySelector("#client").value = job.client;
+    document.querySelector("#location").value = job.location;
+    document.querySelector("#startDate").value = job.startDate;
+    document.querySelector("#endDate").value = job.endDate;
+    //document.querySelector("#travelDays").value = job.travelDays;
+    //document.querySelector("#isRTW").checked = job.isRTW;
+
+    //Change Form Submission to Handle Update
+    document.querySelector('job-form').setAttribute("data-job-id",jobID);
+
+  } catch (error) {
+    console.error("Failed to fetch job", error);
+  }
+}
 
 //DELETE job 
 async function deleteJob(jobId){
