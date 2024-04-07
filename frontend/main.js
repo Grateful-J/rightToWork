@@ -92,6 +92,8 @@ function displayJobs(jobs) {
     `;
   });
 
+  
+  updateCounters(jobs);
 
 }
 
