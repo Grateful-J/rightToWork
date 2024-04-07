@@ -21,6 +21,16 @@ document.querySelector("#job-form").addEventListener("submit", addJob);
 async function addJob(event) {
   event.preventDefault();
 
+// Check if state is valid
+const locationInput = document.querySelector("#location").value;
+const isValidState = Array.from(document.querySelector("#states-datalist").options).some(option => option.value === locationInput);
+
+if (!isValidState) {
+  alert("Please enter a valid state");
+  return;
+}
+
+
   // Get values from form
   const job = {
     jobName: document.querySelector("#jobName").value,
