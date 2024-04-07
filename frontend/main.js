@@ -55,6 +55,26 @@ async function fetchJobs() {
   }
 }
 
+//displays counter of Right to Work days
+function updateCounters(jobs) {
+  let rtwDays = 0;
+  let nonRtwDays = 0;
+
+  jobs.forEach(job => {
+    const startDate = new Date(job.startDate);
+    const endDate = new Date(job.endDate);
+    const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+    if (job.isRTW) {
+      rtwDays += days;
+    } else {
+      nonRtwDays += days;
+    }
+  });
+
+  document.getElementById("rtw-counter").textContent = `RTW Days: ${rtwDays}`;
+  document.getElementById("non-rtw-counter").textContent = `Non-RTW Days: ${nonRtwDays}`;
+}
+
 //displays job and adds styling using tailwind CSS
 function displayJobs(jobs) {
   const container = document.querySelector("#jobs-container");
@@ -71,5 +91,7 @@ function displayJobs(jobs) {
       <td>${job.isRTW ? "Yes" : "No"}</td>
     `;
   });
+
+
 }
 
