@@ -3,10 +3,8 @@ import "./utils/states";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
-//creates array of validStates from imported states.js
-//const validStates = states;
 
-document.addEventListener("DOMContentLoaded", () => {
+  console.log("Has it Loaded Yet?")
   fetchJobs();
   // Add minimum value to endDate based on startDate
   document.querySelector("#startDate").addEventListener("change", () => {
@@ -14,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const endDate = document.querySelector("#endDate");
     endDate.min = startDate;
   });
-});
+
 
 document.querySelector("#job-form").addEventListener("submit", addJob);
 
