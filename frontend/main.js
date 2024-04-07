@@ -18,12 +18,12 @@ async function addJob(event) {
     location: document.querySelector("#location").value,
     startDate: document.querySelector("#startDate").value,
     endDate: document.querySelector("#endDate").value,
-    travelDays: document.querySelector("#travelDays").value,
-    isRTW: document.querySelector("#isRTW").checked,
+    //travelDays: document.querySelector("#travelDays").value,
+    //isRTW: document.querySelector("#isRTW").checked,
   };
 
   try {
-    const response = await fetch("/api/jobs", {
+    const response = await fetch("./api/jobs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
