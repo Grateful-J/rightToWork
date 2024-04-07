@@ -9,5 +9,21 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/main.js"></script>
+
+    <div id="jobs-container"></div>
+
+    <!-- form for adding jobs--> 
+    <form id="job-form">
+      <input type="text" id="jobName" placeholder="Job Name" required />
+      <input type="text" id="client" placeholder="Client" required />
+      <input type="text" id="location" placeholder="Location" required />
+      <input type="date" id="startDate" required />
+      <input type="date" id="endDate" required />
+      <label for="isRTW">Is Right to Work:</label>
+      <input type="checkbox" id="isRTW" />
+      <button type="submit">Add Job</button>
+  </form>
+  
+
   </body>
 </html>
