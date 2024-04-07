@@ -2,7 +2,8 @@ import "./style.css";
 import "./utils/states";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const response = await fetch(`${apiBaseUrl}/api/jobs`);
-const validStates = import.meta.env.VITE_VALID_STATES.split(",").map((state) => state.trim());//creates array of valid states from imported states.js
+//To-Do- figure out why below bricks the code.
+//const validStates = import.meta.env.VITE_VALID_STATES.split(",").map((state) => state.trim());//creates array of valid states from imported states.js
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchJobs();
@@ -13,12 +14,14 @@ document.querySelector("#job-form").addEventListener("submit", addJob);
 async function addJob(event) {
   event.preventDefault();
 
+  /* const locationInput = document.querySelector("#location").value;
+
   //Validate Location based on location input
   if(!validStates.includes(locationInput)){
     alert("Please enter a valid state");
     return;
-  }
-  
+  } */
+
   const job = {
     jobName: document.querySelector("#jobName").value,
     client: document.querySelector("#client").value,
