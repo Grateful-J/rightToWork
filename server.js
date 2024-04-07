@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
 require("dotenv").config();
@@ -6,6 +7,10 @@ const jobRoutes = require("./routes/jobRoutes"); // Adjusted for a models direct
 
 // Express app
 const app = express();
+
+//Enable CORS
+app.use(cors());
+app.use(express.static(path.join(__dirname, "public")));
 
 // Middle-ware for JSON in API
 app.use(express.json());
