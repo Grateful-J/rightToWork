@@ -8,9 +8,19 @@
   </head>
   <body>
     <script type="module" src="/main.js"></script>
+    
 
     <div id="app">
+
+      <div id="day-count">
+        <!--add elements with IDs rtw-counter and non-rtw-counter centered and side by side -->
+        <div id="rtw-counter"></div>
+        <div id="non-rtw-counter"></div>
+      </div>
+
+
       <div id="jobs-form"></div>
+      
 
       <!-- Form for adding jobs-->
       <form id="job-form">
@@ -25,26 +35,28 @@
         </div>
         <button type="submit">Add Job</button>
       </form>
+
+      <div>
+        <!-- Display jobs -->
+        <table id="jobs-table">
+          <thead>
+            <tr>
+              <th>Job Name</th>
+              <th>Client</th>
+              <th>Location</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <!-- <th>Travel Days</th> -->
+              <th>RTW</th>
+            </tr>
+          </thead>
+          <tbody id="jobs-container">
+            <!-- Displays jobs here -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div>
-      <!-- Display jobs -->
-      <table id="jobs-table">
-        <thead>
-          <tr>
-            <th>Job Name</th>
-            <th>Client</th>
-            <th>Location</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <!-- <th>Travel Days</th> -->
-            <th>RTW</th>
-          </tr>
-        </thead>
-        <tbody id="jobs-container">
-          <!-- Displays jobs here -->
-        </tbody>
-      </table>
-    </div>
+
   </body>
 </html>
