@@ -49,3 +49,19 @@ async function editJob(job){
         console.error("Failed to update job", error);
     }
 }
+
+async deleteJob(job) {
+    try {
+        const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
+            method: "DELETE",
+        });
+        if (response.ok) {
+            console.log("Job deleted successfully");
+        } else {
+            console.error("Failed to delete job");
+        }
+    }    
+    catch (error) {
+        console.error("Failed to delete job", error);
+    }
+}
