@@ -1,10 +1,6 @@
 import "./style.css";
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const response = await fetch(`${apiBaseUrl}/api/jobs`);
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchJobs();
@@ -40,10 +36,10 @@ async function addJob(event) {
     } else {
       console.error("Failed to add job");
     }
-    } catch (error) {
-      console.error("Failed to add job", error);
-    }
+  } catch (error) {
+    console.error("Failed to add job", error);
   }
+}
 
 async function fetchJobs() {
   try {
@@ -60,7 +56,7 @@ function updateCounters(jobs) {
   let rtwDays = 0;
   let nonRtwDays = 0;
 
-  jobs.forEach(job => {
+  jobs.forEach((job) => {
     const startDate = new Date(job.startDate);
     const endDate = new Date(job.endDate);
     const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
@@ -70,16 +66,17 @@ function updateCounters(jobs) {
       nonRtwDays += days;
     }
   });
-  
 
   document.getElementById("rtw-counter").textContent = `RTW Days: ${rtwDays}`;
-  document.getElementById("non-rtw-counter").textContent = `Non-RTW Days: ${nonRtwDays}`;
+  document.getElementById(
+    "non-rtw-counter"
+  ).textContent = `Non-RTW Days: ${nonRtwDays}`;
 }
 
 //displays job and adds styling using tailwind CSS
 function displayJobs(jobs) {
   const container = document.querySelector("#jobs-container");
-  container.innerHTML = ''; // Clear existing jobs
+  container.innerHTML = ""; // Clear existing jobs
 
   jobs.forEach((job) => {
     const row = container.insertRow();
@@ -93,8 +90,5 @@ function displayJobs(jobs) {
     `;
   });
 
- 
   updateCounters(jobs);
-
 }
-
