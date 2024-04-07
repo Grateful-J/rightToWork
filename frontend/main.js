@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const endDate = document.querySelector("#endDate");
     endDate.min = startDate;
   });
-  
 });
 
 document.querySelector("#job-form").addEventListener("submit", addJob);
@@ -22,7 +21,7 @@ document.querySelector("#job-form").addEventListener("submit", addJob);
 async function addJob(event) {
   event.preventDefault();
 
-   const locationInput = document.querySelector("#location").value;
+  const locationInput = document.querySelector("#location").value;
 
   //Validate Location based on location input
   /* if(!validStates.includes(locationInput)) {
@@ -84,26 +83,25 @@ async function editJob(jobId) {
     //document.querySelector("#isRTW").checked = job.isRTW;
 
     //Change Form Submission to Handle Update
-    document.querySelector('job-form').setAttribute("data-job-id",jobID);
-
+    document.querySelector("job-form").setAttribute("data-job-id", jobID);
   } catch (error) {
     console.error("Failed to fetch job", error);
   }
 }
 
-//DELETE job 
-async function deleteJob(jobId){
-  try{
+//DELETE job
+async function deleteJob(jobId) {
+  try {
     const response = await fetch(`${apiBaseUrl}/api/jobs/${jobId}`, {
       method: "DELETE",
     });
-    if(response.ok){
+    if (response.ok) {
       console.log("Job deleted successfully");
       fetchJobs();
     } else {
       console.error("Failed to delete job");
     }
-  } catch(error){
+  } catch (error) {
     console.error("Failed to delete job", error);
   }
 }
@@ -138,9 +136,8 @@ function displayJobs(jobs) {
   jobs.forEach((job) => {
     const startDate = new Date(job.startDate);
     const endDate = new Date(job.endDate);
-    const daysWorked = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1; // +1 to include both start and end dates
-
-
+    const daysWorked =
+      Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1; // +1 to include both start and end dates
 
     const row = container.insertRow();
     row.innerHTML = `
@@ -159,4 +156,3 @@ function displayJobs(jobs) {
 
   updateCounters(jobs);
 }
-
