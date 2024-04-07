@@ -8,7 +8,7 @@ async function fetchJobs() {
   } catch (e) {
     console.error("Failed to fetch jobs", e);
   }
-}
+};
 
 async function addJob(job) {
   try {
@@ -27,7 +27,7 @@ async function addJob(job) {
   } catch (error) {
     console.error("Failed to add job", error);
   }
-}
+};
 
 
 async function editJob(job){
@@ -48,9 +48,9 @@ async function editJob(job){
     catch (error) {
         console.error("Failed to update job", error);
     }
-}
+};
 
-async deleteJob(job) {
+async function deleteJob(job) {
     try {
         const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
             method: "DELETE",
@@ -64,4 +64,6 @@ async deleteJob(job) {
     catch (error) {
         console.error("Failed to delete job", error);
     }
-}
+};
+
+export {fetchJobs, addJob, editJob, deleteJob}
