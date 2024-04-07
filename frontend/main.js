@@ -8,6 +8,13 @@ const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchJobs();
+  // Add minimum value to endDate based on startDate
+  document.querySelector("#startDate").addEventListener("change", () => {
+    const startDate = document.querySelector("#startDate").value;
+    const endDate = document.querySelector("#endDate");
+    endDate.min = startDate;
+  });
+  
 });
 
 document.querySelector("#job-form").addEventListener("submit", addJob);
