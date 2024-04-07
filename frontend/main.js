@@ -1,5 +1,8 @@
 import "./style.css";
 
+const response = await fetch('http://localhost:3000/api/jobs');
+
+
 document.addEventListener("DOMContentLoaded", () => {
   fetchJobs();
 });
