@@ -108,6 +108,12 @@ function displayJobs(jobs) {
   container.innerHTML = ""; // Clear existing jobs
 
   jobs.forEach((job) => {
+    const startDate = new Date(job.startDate);
+    const endDate = new Date(job.endDate);
+    const daysWorked = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1; // +1 to include both start and end dates
+
+
+
     const row = container.insertRow();
     row.innerHTML = `
       <td>${job.jobName}</td>
