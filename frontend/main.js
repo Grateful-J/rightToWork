@@ -1,6 +1,9 @@
 import "./style.css";
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
+const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
-const response = await fetch('http://localhost:3000/api/jobs');
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,7 +26,7 @@ async function addJob(event) {
   };
 
   try {
-    const response = await fetch('http://localhost:3000/api/jobs', {
+    const response = await fetch(`${apiBaseUrl}/api/jobs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +47,7 @@ async function addJob(event) {
 
 async function fetchJobs() {
   try {
-    const response = await fetch("http://localhost:3000/api/jobs");
+    const response = await fetch(`${apiBaseUrl}/api/jobs`);
     const jobs = await response.json();
     displayJobs(jobs);
   } catch (error) {
