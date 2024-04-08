@@ -1,112 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <script type="module" src="/main.js"></script>
-
-    <div id="app">
-      <div id="day-count" class="flex justify-around items-center border-2 p-4 text-4xl">
-        <!--add elements with IDs rtw-counter and non-rtw-counter centered and side by side -->
-        <div id="rtw-counter">Right to Work Days:00</div>
-        <div id="non-rtw-counter">Non-Right to Work Days:00</div>
-      </div>
-
-      <div id="jobs-form"></div>
-
-      <!-- Form for adding jobs-->
-      <form id="job-form">
-        <input type="text" id="jobName" placeholder="Job Name" required />
-        <input type="text" id="client" placeholder="Client" required />
-        <input list="states-datalist" id="location" placeholder="Location" required />
-        <datalist id="states-datalist">
-          <option value="Alabama">Alabama</option>
-          <option value="Alaska">Alaska</option>
-          <option value="Arizona">Arizona</option>
-          <option value="Arkansas">Arkansas</option>
-          <option value="California">California</option>
-          <option value="Colorado">Colorado</option>
-          <option value="Connecticut">Connecticut</option>
-          <option value="Delaware">Delaware</option>
-          <option value="Florida">Florida</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Hawaii">Hawaii</option>
-          <option value="Idaho">Idaho</option>
-          <option value="Illinois">Illinois</option>
-          <option value="Indiana">Indiana</option>
-          <option value="Iowa">Iowa</option>
-          <option value="Kansas">Kansas</option>
-          <option value="Kentucky">Kentucky</option>
-          <option value="Louisiana">Louisiana</option>
-          <option value="Maine">Maine</option>
-          <option value="Maryland">Maryland</option>
-          <option value="Massachusetts">Massachusetts</option>
-          <option value="Michigan">Michigan</option>
-          <option value="Minnesota">Minnesota</option>
-          <option value="Mississippi">Mississippi</option>
-          <option value="Missouri">Missouri</option>
-          <option value="Montana">Montana</option>
-          <option value="Nebraska">Nebraska</option>
-          <option value="Nevada">Nevada</option>
-          <option value="New Hampshire">New Hampshire</option>
-          <option value="New Jersey">New Jersey</option>
-          <option value="New Mexico">New Mexico</option>
-          <option value="New York">New York</option>
-          <option value="North Carolina">North Carolina</option>
-          <option value="North Dakota">North Dakota</option>
-          <option value="Ohio">Ohio</option>
-          <option value="Oklahoma">Oklahoma</option>
-          <option value="Oregon">Oregon</option>
-          <option value="Pennsylvania">Pennsylvania</option>
-          <option value="Rhode Island">Rhode Island</option>
-          <option value="South Carolina">South Carolina</option>
-          <option value="South Dakota">South Dakota</option>
-          <option value="Tennessee">Tennessee</option>
-          <option value="Texas">Texas</option>
-          <option value="Utah">Utah</option>
-          <option value="Vermont">Vermont</option>
-          <option value="Virginia">Virginia</option>
-          <option value="Washington">Washington</option>
-          <option value="West Virginia">West Virginia</option>
-          <option value="Wisconsin">Wisconsin</option>
-          <option value="Wyoming">Wyoming</option>
-        </datalist>
-        
-        <div>
-          <label for="startDate"> Start Date:</label>
-          <input type="date" id="startDate" required />
-          <label for="endDate"> End Date:</label>
-          <input type="date" id="endDate" required />
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Right to Work Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="app" class="max-w-4xl mx-auto p-4">
+        <div id="day-count" class="flex justify-around items-center p-4 text-4xl mb-8">
+            <div class="border-2 border-gray-200 rounded-lg p-4 flex-1 mx-2">
+                <div id="rtw-counter">Right to Work Days: 00</div>
+            </div>
+            <div class="border-2 border-gray-200 rounded-lg p-4 flex-1 mx-2">
+                <div id="non-rtw-counter">Non-Right to Work Days: 00</div>
+            </div>
         </div>
-        <button type="submit">Add Job</button>
-      </form>
 
-      <div>
+        <!-- Form for adding jobs -->
+        <form id="job-form" class="grid grid-cols-1 gap-4 mb-8">
+            <input type="text" id="jobName" placeholder="Job Name" required class="input input-bordered w-full" />
+            <input type="text" id="client" placeholder="Client" required class="input input-bordered w-full" />
+            <input list="states-datalist" id="location" placeholder="Location" required class="input input-bordered w-full" />
+            <datalist id="states-datalist">
+                <!-- State options here -->
+            </datalist>
+            
+            <div class="flex gap-4">
+                <div class="flex-1">
+                    <label for="startDate" class="block mb-2">Start Date:</label>
+                    <input type="date" id="startDate" required class="input input-bordered w-full" />
+                </div>
+                <div class="flex-1">
+                    <label for="endDate" class="block mb-2">End Date:</label>
+                    <input type="date" id="endDate" required class="input input-bordered w-full" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Job</button>
+        </form>
+
         <!-- Display jobs -->
-        <table id="jobs-table">
-          <thead>
-            <tr>
-              <th>Job Name</th>
-              <th>Client</th>
-              <th>Location</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <!-- <th>Travel Days</th> -->
-              <th>RTW</th>
-              <th>Days Worked</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody id="jobs-container">
-            <!-- Displays jobs here -->
-          </tbody>
-        </table>
-      </div>
+        <div class="overflow-x-auto">
+            <table id="jobs-table" class="table w-full">
+                <thead>
+                    <tr>
+                        <th>Job Name</th>
+                        <th>Client</th>
+                        <th>Location</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>RTW</th>
+                        <th>Days Worked</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="jobs-container">
+                    <!-- Job rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
     </div>
-  </body>
+    <script type="module" src="/main.js"></script>
+</body>
 </html>
