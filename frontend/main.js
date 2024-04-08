@@ -16,7 +16,6 @@ document.querySelector("#jobs-container").addEventListener("click", (event) => {
   }
 });
 
-
 // Add minimum value to endDate based on startDate
 document.querySelector("#startDate").addEventListener("change", () => {
   const startDate = document.querySelector("#startDate").value;
@@ -101,9 +100,7 @@ function updateCounters(jobs) {
   document.getElementById(
     "non-rtw-counter"
   ).textContent = `Non-RTW Days: ${nonRtwDays}`;
-  
 }
-
 
 // Delete Job
 async function deleteJob(jobId) {
@@ -123,7 +120,6 @@ async function deleteJob(jobId) {
   }
 }
 
-
 //Display Jobs
 function displayJobs(jobs) {
   const container = document.querySelector("#jobs-container");
@@ -132,7 +128,8 @@ function displayJobs(jobs) {
   jobs.forEach((job) => {
     const startDate = new Date(job.startDate);
     const endDate = new Date(job.endDate);
-    const daysWorked = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    const daysWorked =
+      Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
 
     const row = container.insertRow();
     row.innerHTML = `

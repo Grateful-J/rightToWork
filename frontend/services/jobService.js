@@ -4,12 +4,12 @@ async function fetchJobs() {
   try {
     const response = await fetch(`${apiBaseUrl}/api/jobs`);
     const jobs = await response.json();
-    displayJobs(jobs); 
+    displayJobs(jobs);
   } catch (e) {
-    console.error("Failed to fetch jobs", e)
+    console.error("Failed to fetch jobs", e);
     return []; //
   }
-};
+}
 
 async function addJob(job) {
   try {
@@ -28,44 +28,41 @@ async function addJob(job) {
   } catch (error) {
     console.error("Failed to add job", error);
   }
-};
+}
 
-
-async function editJob(job){
-    try {
-        const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(job),
-        });
-        if (response.ok) {
-            console.log("Job updated successfully");
-        } else {
-            console.error("Failed to update job");
-        }   
+async function editJob(job) {
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(job),
+    });
+    if (response.ok) {
+      console.log("Job updated successfully");
+    } else {
+      console.error("Failed to update job");
     }
-    catch (error) {
-        console.error("Failed to update job", error);
-    }
-};
+  } catch (error) {
+    console.error("Failed to update job", error);
+  }
+}
 
 async function deleteJob(job) {
-    try {
-        const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
-            method: "DELETE",
-        });
-        if (response.ok) {
-            console.log("Job deleted successfully");
-        } else {
-            console.error("Failed to delete job");
-        }
-    }    
-    catch (error) {
-        console.error("Failed to delete job", error);
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      console.log("Job deleted successfully");
+    } else {
+      console.error("Failed to delete job");
     }
-};
+  } catch (error) {
+    console.error("Failed to delete job", error);
+  }
+}
 // commented out temp until get back to baseline with new changes
 
 /* //EDIT Job
@@ -105,4 +102,4 @@ async function editJob(jobId) {
     }
   } */
 
-export {fetchJobs, addJob, editJob, deleteJob}
+export { fetchJobs, addJob, editJob, deleteJob };
