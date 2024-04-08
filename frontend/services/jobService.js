@@ -4,9 +4,10 @@ async function fetchJobs() {
   try {
     const response = await fetch(`${apiBaseUrl}/api/jobs`);
     const jobs = await response.json();
-    return jobs;
+    displayJobs(jobs); 
   } catch (e) {
-    console.error("Failed to fetch jobs", e);
+    console.error("Failed to fetch jobs", e)
+    return []; //
   }
 };
 
