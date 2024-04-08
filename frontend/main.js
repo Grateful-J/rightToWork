@@ -6,6 +6,17 @@ const response = await fetch(`${apiBaseUrl}/api/jobs`);
 console.log("Has it Loaded Yet?");
 fetchJobs();
 document.querySelector("#job-form").addEventListener("submit", addJob);
+
+//add event listener for on click delete to deleteJob
+
+document.querySelector("#jobs-container").addEventListener("click", (event) => {
+  if (event.target.classList.contains("delete-btn")) {
+    const jobId = event.target.getAttribute("data-id");
+    deleteJob(jobId);
+  }
+});
+
+
 // Add minimum value to endDate based on startDate
 document.querySelector("#startDate").addEventListener("change", () => {
   const startDate = document.querySelector("#startDate").value;
@@ -90,7 +101,28 @@ function updateCounters(jobs) {
   document.getElementById(
     "non-rtw-counter"
   ).textContent = `Non-RTW Days: ${nonRtwDays}`;
+  
 }
+
+
+// Delete Job
+async function deleteJob(jobId) {
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/jobs/${jobId}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      console.log("Job deleted successfully");
+      fetchJobs(); // Re-fetch jobs to update the list
+    } else {
+      console.error("Failed to delete job");
+    }
+  } catch (error) {
+    console.error("Failed to delete job", error);
+  }
+}
+
 
 //Display Jobs
 function displayJobs(jobs) {
@@ -100,8 +132,7 @@ function displayJobs(jobs) {
   jobs.forEach((job) => {
     const startDate = new Date(job.startDate);
     const endDate = new Date(job.endDate);
-    const daysWorked =
-      Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1; // +1 to include both start and end dates
+    const daysWorked = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
 
     const row = container.insertRow();
     row.innerHTML = `
@@ -112,12 +143,8 @@ function displayJobs(jobs) {
       <td>${new Date(job.endDate).toLocaleDateString()}</td>
       <td>${job.isRTW ? "Yes" : "No"}</td>
       <td>${daysWorked}</td>
-       <td>
-    <button onclick="editJob('${job._id}')" class="edit-btn">Edit</button>
-  </td>
-      <td>
-    <button onclick="deleteJob('${job._id}')" class="delete-btn">Delete</button>
-  </td>
+      <td><button class="edit-btn">Edit</button></td>
+      <td><button class="delete-btn" data-id="${job._id}">Delete</button></td>
     `;
   });
 
