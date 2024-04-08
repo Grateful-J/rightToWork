@@ -3,31 +3,29 @@ import "./utils/states";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
-
-  console.log("Has it Loaded Yet?")
-  fetchJobs();
-  // Add minimum value to endDate based on startDate
-  document.querySelector("#startDate").addEventListener("change", () => {
-    const startDate = document.querySelector("#startDate").value;
-    const endDate = document.querySelector("#endDate");
-    endDate.min = startDate;
-  });
-
-
+console.log("Has it Loaded Yet?");
+fetchJobs();
 document.querySelector("#job-form").addEventListener("submit", addJob);
+// Add minimum value to endDate based on startDate
+document.querySelector("#startDate").addEventListener("change", () => {
+  const startDate = document.querySelector("#startDate").value;
+  const endDate = document.querySelector("#endDate");
+  endDate.min = startDate;
+});
 
 async function addJob(event) {
   event.preventDefault();
 
-// Check if state is valid
-const locationInput = document.querySelector("#location").value;
-const isValidState = Array.from(document.querySelector("#states-datalist").options).some(option => option.value === locationInput);
+  // Check if state is valid
+  const locationInput = document.querySelector("#location").value;
+  const isValidState = Array.from(
+    document.querySelector("#states-datalist").options
+  ).some((option) => option.value === locationInput);
 
-if (!isValidState) {
-  alert("Please enter a valid state");
-  return;
-}
-
+  if (!isValidState) {
+    alert("Please enter a valid state");
+    return;
+  }
 
   // Get values from form
   const job = {
@@ -71,8 +69,6 @@ async function fetchJobs() {
     console.error("Failed to fetch jobs", error);
   }
 }
-
-
 
 //Displays Counter of Right to Work days
 function updateCounters(jobs) {
