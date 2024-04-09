@@ -23,6 +23,7 @@ document.querySelector("#jobs-container").addEventListener("click", (event) => {
     const jobId = event.target.parentElement.parentElement.getAttribute("data-id");
     const job = jobs.find((job) => job._id === jobId);
     editJob(job);
+    console.log('edited Job:', job);
   }
 });
 
