@@ -12,6 +12,8 @@ router.get("/", async (req, res) => {
     }
 });
 
+
+
 //POST new job
 router.post("/", async (req, res) => {
     const newJob = new Job(req.body);

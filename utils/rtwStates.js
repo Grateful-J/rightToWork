@@ -1,5 +1,5 @@
 // List of Right to Work States
-const rtwStates = [
+const rtwLongStates = [
   "Arizona",
   "Alabama",
   "Arkansas",
@@ -28,5 +28,37 @@ const rtwStates = [
   "Wisconsin",
   "Wyoming",
 ];
+
+//create array of rtwLongStates in state code format
+const rtwStates = [
+  "AZ",
+  "AL",
+  "AR",
+  "FL",
+  "ID",
+  "GA",
+  "IN",
+  "KS",
+  "IA",
+  "KY",
+  "MI",
+  "LA",
+  "MS",
+  "NE",
+  "MO",
+  "NV",
+  "ND",
+  "NC",
+  "OK",
+  "SD",
+  "SC",
+  "TN",
+  "UT",
+  "VA",
+  "TX",
+  "WI",
+  "WY",
+]
+
 
 module.exports = rtwStates;
