@@ -3,6 +3,9 @@ import "./utils/states";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
+//Global variable for jobs
+let globalJobs = [];
+
 console.log("Has it Loaded Yet?");
 fetchJobs();
 document.querySelector("#job-form").addEventListener("submit", addJob);
