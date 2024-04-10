@@ -15,7 +15,6 @@ fetchJobs();
 document.querySelector("#job-form").addEventListener("submit", addJob);
 
 // Add Event Listener For on click delete to deleteJob
-
 document.querySelector("#jobs-container").addEventListener("click", (event) => {
   if (event.target.classList.contains("delete-btn")) {
     const jobId = event.target.getAttribute("data-id");
@@ -158,21 +157,20 @@ function displayJobs(jobs) {
 
 //Edit Job
 async function editJob(job) {
-  try {
-    const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(job),
-    });
-    if (response.ok) {
-      console.log("Job updated successfully");
-    } else {
-      console.error("Failed to update job");
-    }
-  } catch (error) {
-    console.error("Failed to update job", error);
-  }
-}
+  //Populates the form with job data
 
+  document.querySelector("#jobName").value = job.jobName;
+  document.querySelector("#client").value = job.client;
+  document.querySelector("#location").value = job.location;
+  document.querySelector("#startDate").value = job.startDate;
+  document.querySelector("#endDate").value = job.endDate;
+  //document.querySelector("#travelDays").value = job.travelDays;
+  //document.querySelector("#isRTW").checked = job.isRTW;
+
+  //Set editing state
+  isEditing = true;
+  editingJobID = job._id;
+
+  //Display Form
+  document.querySelector("#job-form").scrollIntoView({ behavior: "smooth" });
+}
