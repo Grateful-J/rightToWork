@@ -38,9 +38,7 @@ async function addorUpdateJob(event) {
 
   // Check if state is valid
   const locationInput = document.querySelector("#location").value;
-  const isValidState = Array.from(
-    document.querySelector("#states-datalist").options
-  ).some((option) => option.value === locationInput);
+  const isValidState = Array.from(document.querySelector("#states-datalist").options).some((option) => option.value === locationInput);
 
   if (!isValidState) {
     alert("Please enter a valid state");
@@ -117,17 +115,13 @@ function updateCounters(jobs) {
   });
 
   document.getElementById("rtw-counter").textContent = `RTW Days: ${rtwDays}`;
-  document.getElementById(
-    "non-rtw-counter"
-  ).textContent = `Non-RTW Days: ${nonRtwDays}`;
+  document.getElementById("non-rtw-counter").textContent = `Non-RTW Days: ${nonRtwDays}`;
 }
 
 // Delete Job
 async function deleteJob(jobId) {
   //Ask user if confirm delete
-  const isDeleteConfirmed = confirm(
-    "Are you sure you want to delete this job?"
-  );
+  const isDeleteConfirmed = confirm("Are you sure you want to delete this job?");
   if (!isDeleteConfirmed) {
     return; // Exit the function if user cancels
   }
@@ -156,28 +150,19 @@ function displayJobs(jobs) {
   jobs.forEach((job) => {
     const startDate = new Date(job.startDate);
     const endDate = new Date(job.endDate);
-    const daysWorked =
-      Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    const daysWorked = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
 
     const row = container.insertRow();
     row.innerHTML = `
   <td class="border-b border-gray-200 p-2">${job.jobName}</td>
   <td class="border-b border-gray-200 p-2">${job.client}</td>
   <td class="border-b border-gray-200 p-2">${job.location}</td>
-  <td class="border-b border-gray-200 p-2">${new Date(
-    job.startDate
-  ).toLocaleDateString()}</td>
-  <td class="border-b border-gray-200 p-2">${new Date(
-    job.endDate
-  ).toLocaleDateString()}</td>
+  <td class="border-b border-gray-200 p-2">${new Date(job.startDate).toLocaleDateString()}</td>
+  <td class="border-b border-gray-200 p-2">${new Date(job.endDate).toLocaleDateString()}</td>
   <td class="border-b border-gray-200 p-2">${job.isRTW ? "Yes" : "No"}</td>
   <td class="border-b border-gray-200 p-2">${daysWorked}</td>
-  <td class="border-b border-gray-200 p-2"><button class="edit-btn" data-id="${
-    job._id
-  }">Edit</button></td>
-  <td class="border-b border-gray-200 p-2"><button class="delete-btn" data-id="${
-    job._id
-  }">Delete</button></td>
+  <td class="border-b border-gray-200 p-2"><button class="edit-btn" data-id="${job._id}">Edit</button></td>
+  <td class="border-b border-gray-200 p-2"><button class="delete-btn" data-id="${job._id}">Delete</button></td>
 `;
   });
 

@@ -15,6 +15,21 @@ app.use(express.static(path.join(__dirname, "public")));
 // Middle-ware for JSON in API
 app.use(express.json());
 
+// API "GET" Address from GEO
+const geoURL = "https://api.geoapify.com/v1/geocode/autocomplete?REQUEST_PARAMS";
+const geoKey = process.env.GEOAPIFY_AUTO_COMPLETE_KEY;
+
+//Example URL:https://api.geoapify.com/v1/geocode/autocomplete?text=Mosco&apiKey=geoKey
+
+const requestGeoOptions = {
+  method: "GET",
+};
+
+fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=Flor&apiKey=${geoKey}`, requestGeoOptions)
+  .then((response) => response.json())
+  .then((result) => console.log(result))
+  .catch((error) => console.log("error", error));
+
 // API "GET" Commands
 app.get("/", (req, res) => {
   res.send("Hello from node API! updated");
