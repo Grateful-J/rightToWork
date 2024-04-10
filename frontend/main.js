@@ -27,6 +27,15 @@ document.querySelector("#jobs-container").addEventListener("click", (event) => {
   }
 });
 
+document.querySelector("#jobs-container").addEventListener("click", (event) => {
+  console.log(
+    "Clicked element:",
+    event.target,
+    "with data-id:",
+    event.target.getAttribute("data-id")
+  );
+});
+
 // Add minimum value to endDate based on startDate
 document.querySelector("#startDate").addEventListener("change", () => {
   const startDate = document.querySelector("#startDate").value;
@@ -161,7 +170,7 @@ function displayJobs(jobs) {
       <td>${new Date(job.endDate).toLocaleDateString()}</td>
       <td>${job.isRTW ? "Yes" : "No"}</td>
       <td>${daysWorked}</td>
-      <td><button class="edit-btn">Edit</button></td>
+      <td><button class="edit-btn" data-id="${job._id}">Edit</button></td>
       <td><button class="delete-btn" data-id="${job._id}">Delete</button></td>
     `;
   });
