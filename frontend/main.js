@@ -5,7 +5,6 @@ const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
 //Global variable for jobs
 let globalJobs = [];
-console.log("globalJobs", globalJobs);
 
 //Global variable to track the editing state
 let isEditing = false;
@@ -13,9 +12,9 @@ let editingJobID = "";
 
 console.log("Has it Loaded Yet?");
 fetchJobs();
-document.querySelector("#job-form").addEventListener("submit", addorUpdateJob); // Add Event Listener For on submit to addJob or updateJob
+document.querySelector("#job-form").addEventListener("submit", addorUpdateJob); // Event Listener For on submit to addJob or updateJob
 
-// Add Event Listener For edit or delete
+// Event Listener for Edits or Deletes
 document.querySelector("#jobs-container").addEventListener("click", (event) => {
   if (event.target.classList.contains("delete-btn")) {
     const jobId = event.target.getAttribute("data-id");
@@ -25,15 +24,6 @@ document.querySelector("#jobs-container").addEventListener("click", (event) => {
     const job = globalJobs.find((job) => job._id === jobId);
     editJob(job);
   }
-});
-
-document.querySelector("#jobs-container").addEventListener("click", (event) => {
-  console.log(
-    "Clicked element:",
-    event.target,
-    "with data-id:",
-    event.target.getAttribute("data-id")
-  );
 });
 
 // Add minimum value to endDate based on startDate
@@ -64,8 +54,8 @@ async function addorUpdateJob(event) {
     location: document.querySelector("#location").value,
     startDate: document.querySelector("#startDate").value,
     endDate: document.querySelector("#endDate").value,
-    //travelDays: document.querySelector("#travelDays").value,
-    //isRTW: document.querySelector("#isRTW").checked,
+    //TODO: travelDays: document.querySelector("#travelDays").value,
+    //TODO: isRTW: document.querySelector("#isRTW").checked,
   };
 
   let url = `${apiBaseUrl}/api/jobs`;
@@ -205,7 +195,7 @@ async function editJob(job) {
   //Display Form
   document.querySelector("#job-form").scrollIntoView({ behavior: "smooth" });
 }
-
+//Reset Form
 function resetForm() {
   document.querySelector("#job-form").reset();
   isEditing = false;
