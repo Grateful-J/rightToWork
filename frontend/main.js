@@ -184,12 +184,17 @@ async function editJob(job) {
   const submitBtn = document.querySelector('button[type="submit"]');
   submitBtn.textContent = "Update Job";
 
+  const startDate = new Date(job.startDate);
+  const isoFormattedStartDate = startDate.toISOString().split("T")[0];
+  const endDate = new Date(job.endDate);
+  const isoFormattedEndDate = endDate.toISOString().split("T")[0];
+
   //Populates the form with job data
   document.querySelector("#jobName").value = job.jobName;
   document.querySelector("#client").value = job.client;
   document.querySelector("#location").value = job.location;
-  document.querySelector("#startDate").value = job.startDate;
-  document.querySelector("#endDate").value = job.endDate;
+  document.querySelector("#startDate").value = isoFormattedStartDate;
+  document.querySelector("#endDate").value = isoFormattedEndDate;
   //document.querySelector("#travelDays").value = job.travelDays;
   //document.querySelector("#isRTW").checked = job.isRTW;
 
