@@ -208,8 +208,8 @@ async function editJob(job) {
   isEditing = true;
   editingJobID = job._id;
 
-  //Display Form
-  document.querySelector("#job-form").scrollIntoView({ behavior: "smooth" });
+  //Snap to top of window
+  window.scrollTo(0, 0);
 }
 //Reset Form
 function resetForm() {
