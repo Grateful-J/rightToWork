@@ -10,7 +10,7 @@ let globalJobs = [];
 let isEditing = false;
 let editingJobID = "";
 
-console.log("Has it Loaded Yet?");
+//On page load fetch jobs & listens for form submit
 fetchJobs();
 document.querySelector("#job-form").addEventListener("submit", addorUpdateJob); // Event Listener For on submit to addJob or updateJob
 
