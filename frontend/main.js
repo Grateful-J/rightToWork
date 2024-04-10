@@ -22,6 +22,16 @@ document.querySelector("#jobs-container").addEventListener("click", (event) => {
   }
 });
 
+//Add Event Listener For on click edit to editJob
+document.querySelector("#jobs-container").addEventListener("click", (event) => {
+  if (event.target.classList.contains("edit-btn")) {
+    const jobId =
+      event.target.parentElement.parentElement.getAttribute("data-id");
+    const job = globalJobs.find((job) => job._id === jobId);
+    editJob(job);
+  }
+});
+
 // Add minimum value to endDate based on startDate
 document.querySelector("#startDate").addEventListener("change", () => {
   const startDate = document.querySelector("#startDate").value;
