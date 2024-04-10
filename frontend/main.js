@@ -6,27 +6,20 @@ const response = await fetch(`${apiBaseUrl}/api/jobs`);
 //Global variable for jobs
 let globalJobs = [];
 
+//Global variable to track the editing state
+let isEditing = false;
+let editingJobID = "";
+
 console.log("Has it Loaded Yet?");
 fetchJobs();
 document.querySelector("#job-form").addEventListener("submit", addJob);
 
-//add event listener for on click delete to deleteJob
+// Add Event Listener For on click delete to deleteJob
 
 document.querySelector("#jobs-container").addEventListener("click", (event) => {
   if (event.target.classList.contains("delete-btn")) {
     const jobId = event.target.getAttribute("data-id");
     deleteJob(jobId);
-  }
-});
-
-//add event listener for on click edit to editJob
-
-document.querySelector("#jobs-container").addEventListener("click", (event) => {
-  if (event.target.classList.contains("edit-btn")) {
-    const jobId = event.target.parentElement.parentElement.getAttribute("data-id");
-    const job = jobs.find((job) => job._id === jobId);
-    editJob(job);
-    console.log('edited Job:', job);
   }
 });
 
@@ -88,6 +81,7 @@ async function fetchJobs() {
   try {
     const response = await fetch(`${apiBaseUrl}/api/jobs`);
     const jobs = await response.json();
+    globalJobs = jobs; //update global variable
     displayJobs(jobs);
   } catch (error) {
     console.error("Failed to fetch jobs", error);
@@ -161,3 +155,24 @@ function displayJobs(jobs) {
 
   updateCounters(jobs);
 }
+
+//Edit Job
+async function editJob(job) {
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/jobs/${job._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(job),
+    });
+    if (response.ok) {
+      console.log("Job updated successfully");
+    } else {
+      console.error("Failed to update job");
+    }
+  } catch (error) {
+    console.error("Failed to update job", error);
+  }
+}
+
