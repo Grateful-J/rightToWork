@@ -5,6 +5,7 @@ const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
 //Global variable for jobs
 let globalJobs = [];
+console.log("globalJobs", globalJobs);
 
 //Global variable to track the editing state
 let isEditing = false;
@@ -93,6 +94,7 @@ async function fetchJobs() {
     const response = await fetch(`${apiBaseUrl}/api/jobs`);
     const jobs = await response.json();
     globalJobs = jobs; //update global variable
+    console.log(`fetched jobs: ${globalJobs[0]}`);
     displayJobs(jobs);
   } catch (error) {
     console.error("Failed to fetch jobs", error);
