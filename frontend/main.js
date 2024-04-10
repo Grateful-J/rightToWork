@@ -124,6 +124,14 @@ function updateCounters(jobs) {
 
 // Delete Job
 async function deleteJob(jobId) {
+  //Ask user if confirm delete
+  const isDeleteConfirmed = confirm(
+    "Are you sure you want to delete this job?"
+  );
+  if (!isDeleteConfirmed) {
+    return; // Exit the function if user cancels
+  }
+
   try {
     const response = await fetch(`${apiBaseUrl}/api/jobs/${jobId}`, {
       method: "DELETE",
@@ -205,3 +213,9 @@ function resetForm() {
   const submitBtn = document.querySelector('button[type="submit"]');
   submitBtn.textContent = "Add Job";
 }
+
+//TODO: Hide delete unless in edit mode
+
+//TODO:Move JS job functions to new module
+
+//TODO: look into better state management for "edit mode"
