@@ -12,21 +12,15 @@ let editingJobID = "";
 
 console.log("Has it Loaded Yet?");
 fetchJobs();
-document.querySelector("#job-form").addEventListener("submit", addJob);
+document.querySelector("#job-form").addEventListener("submit", addorUpdateJob); // Add Event Listener For on submit to addJob or updateJob
 
-// Add Event Listener For on click delete to deleteJob
+// Add Event Listener For edit or delete
 document.querySelector("#jobs-container").addEventListener("click", (event) => {
   if (event.target.classList.contains("delete-btn")) {
     const jobId = event.target.getAttribute("data-id");
     deleteJob(jobId);
-  }
-});
-
-//Add Event Listener For on click edit to editJob
-document.querySelector("#jobs-container").addEventListener("click", (event) => {
-  if (event.target.classList.contains("edit-btn")) {
-    const jobId =
-      event.target.parentElement.parentElement.getAttribute("data-id");
+  } else if (event.target.classList.contains("edit-btn")) {
+    const jobId = event.target.getAttribute("data-id");
     const job = globalJobs.find((job) => job._id === jobId);
     editJob(job);
   }
@@ -39,7 +33,7 @@ document.querySelector("#startDate").addEventListener("change", () => {
   endDate.min = startDate;
 });
 
-async function addJob(event) {
+async function addorUpdateJob(event) {
   event.preventDefault();
 
   // Check if state is valid
@@ -64,10 +58,17 @@ async function addJob(event) {
     //isRTW: document.querySelector("#isRTW").checked,
   };
 
-  // Add job to database
+  let url = `${apiBaseUrl}/api/jobs`;
+  let method = "POST";
+  if (isEditing) {
+    url = `${apiBaseUrl}/api/jobs/${editingJobID}`;
+    method = "PATCH";
+  }
+
+  // Add or update job to database
   try {
-    const response = await fetch(`${apiBaseUrl}/api/jobs`, {
-      method: "POST",
+    const response = await fetch(url, {
+      method: method,
       headers: {
         "Content-Type": "application/json",
       },
@@ -75,10 +76,11 @@ async function addJob(event) {
     });
 
     if (response.ok) {
-      console.log("Job added successfully");
+      console.log(isEditing ? "Job updated" : "Job added");
+      resetForm();
       fetchJobs();
     } else {
-      console.error("Failed to add job");
+      console.error(isEditing ? "Failed to update job" : "Failed to add job");
     }
   } catch (error) {
     console.error("Failed to add job", error);
@@ -167,8 +169,11 @@ function displayJobs(jobs) {
 
 //Edit Job
 async function editJob(job) {
-  //Populates the form with job data
+  //Change submit button text to "Update Job"
+  const submitBtn = document.querySelector('button[type="submit"]');
+  submitBtn.textContent = "Update Job";
 
+  //Populates the form with job data
   document.querySelector("#jobName").value = job.jobName;
   document.querySelector("#client").value = job.client;
   document.querySelector("#location").value = job.location;
@@ -183,4 +188,14 @@ async function editJob(job) {
 
   //Display Form
   document.querySelector("#job-form").scrollIntoView({ behavior: "smooth" });
+}
+
+function resetForm() {
+  document.querySelector("#job-form").reset();
+  isEditing = false;
+  editingJobID = "";
+
+  //Change submit button back to "Add Job"
+  const submitBtn = document.querySelector('button[type="submit"]');
+  submitBtn.textContent = "Add Job";
 }
