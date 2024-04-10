@@ -98,8 +98,6 @@
           <option value="WV">West Virginia</option>
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
-          
-          
         </datalist>
 
         <div class="flex gap-4">
@@ -127,20 +125,57 @@
 
       <!-- Display jobs -->
       <div class="overflow-x-auto">
-        <table id="jobs-table" class="table w-full">
+        <table id="jobs-table" class="table w-full border border-gray-200">
           <thead>
-            <tr>
-              <th>Job Name</th>
-              <th>Client</th>
-              <th>Location</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>RTW</th>
-              <th>Days Worked</th>
-              <th>Edit</th>
-              <th>Delete</th>
+            <tr class="text-center">
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                Job Name
+              </th>
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                Client
+              </th>
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                Location
+              </th>
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                Start Date
+              </th>
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                End Date
+              </th>
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                RTW
+              </th>
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                Days Worked
+              </th>
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                Edit
+              </th>
+              <th
+                class="font-semibold text-gray-800 bg-gray-100 p-2 border-b-2 border-gray-200"
+              >
+                Delete
+              </th>
             </tr>
           </thead>
+
           <tbody id="jobs-container">
             <!-- Job rows will be inserted here -->
           </tbody>

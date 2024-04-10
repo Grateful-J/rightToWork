@@ -161,16 +161,24 @@ function displayJobs(jobs) {
 
     const row = container.insertRow();
     row.innerHTML = `
-      <td>${job.jobName}</td>
-      <td>${job.client}</td>
-      <td>${job.location}</td>
-      <td>${new Date(job.startDate).toLocaleDateString()}</td>
-      <td>${new Date(job.endDate).toLocaleDateString()}</td>
-      <td>${job.isRTW ? "Yes" : "No"}</td>
-      <td>${daysWorked}</td>
-      <td><button class="edit-btn" data-id="${job._id}">Edit</button></td>
-      <td><button class="delete-btn" data-id="${job._id}">Delete</button></td>
-    `;
+  <td class="border-b border-gray-200 p-2">${job.jobName}</td>
+  <td class="border-b border-gray-200 p-2">${job.client}</td>
+  <td class="border-b border-gray-200 p-2">${job.location}</td>
+  <td class="border-b border-gray-200 p-2">${new Date(
+    job.startDate
+  ).toLocaleDateString()}</td>
+  <td class="border-b border-gray-200 p-2">${new Date(
+    job.endDate
+  ).toLocaleDateString()}</td>
+  <td class="border-b border-gray-200 p-2">${job.isRTW ? "Yes" : "No"}</td>
+  <td class="border-b border-gray-200 p-2">${daysWorked}</td>
+  <td class="border-b border-gray-200 p-2"><button class="edit-btn" data-id="${
+    job._id
+  }">Edit</button></td>
+  <td class="border-b border-gray-200 p-2"><button class="delete-btn" data-id="${
+    job._id
+  }">Delete</button></td>
+`;
   });
 
   updateCounters(jobs);
