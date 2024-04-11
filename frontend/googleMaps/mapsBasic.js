@@ -26,11 +26,11 @@ async function findPlaces() {
   const { Place } = await google.maps.importLibrary("places");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const request = {
-    textQuery: "Tacos in Mountain View",
-    fields: ["displayName", "location", "businessStatus"],
-    includedType: "restaurant",
-    locationBias: { lat: 37.4161493, lng: -122.0812166 },
-    isOpenNow: true,
+    textQuery: "Houston, TX",
+    fields: ["displayName", "location", "businessStatus", "adrFormatAddress", "formattedAddress"],
+    //includedType: ,
+    //locationBias: "",
+    //isOpenNow: ,
     language: "en-US",
     maxResultCount: 8,
     minRating: 3.2,
@@ -41,7 +41,11 @@ async function findPlaces() {
   const { places } = await Place.searchByText(request);
 
   if (places.length) {
-    console.log(places);
+    console.log(places[0]);
+    const newMapCenter = places[0].location;
+    //pass newMapCenter to map "center" property
+    map.setCenter(newMapCenter);
+    map.setZoom(10);
   }
 }
 
