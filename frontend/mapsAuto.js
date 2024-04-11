@@ -24,7 +24,7 @@ async function loadGoogleMapsScript() {
   }
 }
 
-loadGoogleMapsScript(); // Make sure to call it to load the script
+loadGoogleMapsScript();
 
 window.initMap = async function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -55,7 +55,7 @@ window.initMap = async function initMap() {
 
   infowindow.setContent(infowindowContent);
 
-  const marker = new google.maps.Marker({
+  const marker = new google.maps.AdvancedMarkerElement({
     map,
     anchorPoint: new google.maps.Point(0, -29),
   });
