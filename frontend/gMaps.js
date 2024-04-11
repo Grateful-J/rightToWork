@@ -1,4 +1,4 @@
-//"use strict";
+"use strict";
 
 const gkey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 console.log(`The google key is: ${gkey}`);
