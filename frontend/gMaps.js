@@ -3,6 +3,8 @@
 const gkey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 console.log(`The google key is: ${gkey}`);
 
+const { AutocompleteService } = await google.maps.importLibrary("places");
+
 async function loadGoogleMapsScript() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   if (!apiKey) {
