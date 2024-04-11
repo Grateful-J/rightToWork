@@ -26,8 +26,8 @@ async function findPlaces() {
   const { Place } = await google.maps.importLibrary("places");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const request = {
-    textQuery: "Houston, TX",
-    fields: ["displayName", "location", "businessStatus", "adrFormatAddress", "formattedAddress"],
+    textQuery: "Madison Square Garden",
+    fields: ["location", "adrFormatAddress"],
     //includedType: ,
     //locationBias: "",
     //isOpenNow: ,
@@ -46,6 +46,26 @@ async function findPlaces() {
     //pass newMapCenter to map "center" property
     map.setCenter(newMapCenter);
     map.setZoom(10);
+
+    // Chooses top search result
+    let adrFormatAddress = places[0].adrFormatAddress;
+    // Extract text from HTML
+    let cleanAddress = adrFormatAddress.replace(/<[^>]*>/g, "");
+
+    // Split by comma and map through each to trim whitespace
+    const addressElements = cleanAddress.split(",").map((element) => element.trim());
+
+    console.log(`Street Address: ${addressElements[0]}`);
+    console.log(`Locality: ${addressElements[1]}`);
+
+    // Extract Region and Zip Code
+    let regionZip = addressElements[2].match(/([A-Z]{2})\s(\d{5})/);
+    let state = regionZip[1];
+    let zipCode = regionZip[2];
+
+    console.log(`Region: ${state}`);
+    console.log(`Zip Code: ${zipCode}`);
+    console.log(`Country Name: ${addressElements[3]}`);
   }
 }
 
