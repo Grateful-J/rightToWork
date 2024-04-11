@@ -1,7 +1,6 @@
 import { Loader } from "@googlemaps/js-api-loader";
 
 const gAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-console.log(`This is the  load attempt: APIKEY: ${gAPIKey}`);
 
 const loader = new Loader({
   apiKey: gAPIKey,
