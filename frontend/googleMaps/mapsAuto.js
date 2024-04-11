@@ -7,13 +7,39 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-async function loadGoogleMapsScript() {
+// [START maps_places_autocomplete_addressform]
+
+import { Loader } from "@googlemaps/js-api-loader";
+
+const gAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+console.log(`This is the  load attempt: APIKEY: ${gAPIKey}`);
+
+const loader = new Loader({
+  apiKey: gAPIKey,
+  version: "weekly",
+  library: "places",
+  language: "en",
+});
+
+loader.load().then(async () => {
+  const { Map } = await google.maps.importLibrary("maps");
+
+  let map = new Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+
+  console.log(map);
+});
+
+/* async function loadGoogleMapsScript() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   if (!apiKey) {
     console.error("Google Maps API key is not defined.");
     return;
   }
 
+  // Load the Google Maps API script
   if (!document.querySelector("#google-maps-script")) {
     const script = document.createElement("script");
     script.id = "google-maps-script";
@@ -22,11 +48,11 @@ async function loadGoogleMapsScript() {
     script.defer = true;
     document.head.appendChild(script);
   }
-}
+} */
 
-loadGoogleMapsScript();
+//loadGoogleMapsScript();
 
-window.initMap = async function initMap() {
+/* window.initMap = async function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 40.749933, lng: -73.98633 },
     zoom: 13,
@@ -55,7 +81,7 @@ window.initMap = async function initMap() {
 
   infowindow.setContent(infowindowContent);
 
-  const marker = new google.maps.AdvancedMarkerElement({
+  const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(0, -29),
   });
@@ -84,7 +110,9 @@ window.initMap = async function initMap() {
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
     infowindowContent.children["place-name"].textContent = place.name;
+    console.log(`The place name is: ${place.name}`);
     infowindowContent.children["place-address"].textContent = place.formatted_address;
+    console.log(`The full address is: ${place.formatted_address}`);
     infowindow.open(map, marker);
   });
 
@@ -138,4 +166,5 @@ window.initMap = async function initMap() {
   });
 };
 
-window.initMap = initMap;
+//window.initMap = initMap;
+ */
