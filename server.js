@@ -15,10 +15,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // Middle-ware for JSON in API
 app.use(express.json());
 
-//Router to Geo API
-const locationRouter = require("./routes/geoRoutes");
-app.use("/api/geo", locationRouter);
-
 // API "GET" Commands
 app.get("/", (req, res) => {
   res.send("Hello from node API! updated");
