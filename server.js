@@ -4,7 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const jobRoutes = require("./routes/jobRoutes"); // Adjusted for a models directory
-const locationRoutes = require(".routes/locationRoutes");
+const locationRoutes = require("./routes/locationRoutes");
 
 // Express app
 const app = express();
@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 
 //Use Routes
 app.use("/api/jobs", jobRoutes);
+app.use("/api/locations", locationRoutes);
 
 // Serve static assets if in production
 const port = process.env.PORT || 3000;

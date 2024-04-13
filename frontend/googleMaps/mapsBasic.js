@@ -1,6 +1,6 @@
 import { Loader } from "@googlemaps/js-api-loader";
 
-const response = await fetch(`${apiBaseUrl}/api/locations`); // Fetch locations from API
+const locationResponse = await fetch(`${apiBaseUrl}/api/locations`); // Fetch locations from API
 
 const gAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 let map;
@@ -141,3 +141,13 @@ async function findPlaces(locationQuery) {
 
 //call findPlaces
 findPlaces();
+
+//GET all locations
+fetch(`${apiBaseUrl}/api/locations`)
+  .then((response) => response.json())
+  .then((locations) => {
+    console.log(locations);
+  })
+  .catch((error) => console.error(error));
+
+//POST new location
