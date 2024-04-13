@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const jobRoutes = require("./routes/jobRoutes"); // Adjusted for a models directory
+const locationRoutes = require(".routes/locationRoutes");
 
 // Express app
 const app = express();
