@@ -9,7 +9,7 @@
 
 // [START maps_places_autocomplete_addressform]
 
-import { Loader } from "@googlemaps/js-api-loader";
+/* import { Loader } from "@googlemaps/js-api-loader";
 
 const gAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 console.log(`This is the  load attempt: APIKEY: ${gAPIKey}`);
@@ -30,7 +30,7 @@ loader.load().then(async () => {
   });
 
   console.log(map);
-});
+}); */
 
 /* async function loadGoogleMapsScript() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
