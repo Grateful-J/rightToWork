@@ -212,3 +212,9 @@ function resetForm() {
 //TODO:Move JS job functions to new module
 
 //TODO: look into better state management for "edit mode"
+
+//TODO: import code from mapsBasic.js and utilize autocomeplete for location field
+
+//TODO: GET all locations
+
+//TODO:

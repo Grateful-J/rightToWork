@@ -1,5 +1,7 @@
 import { Loader } from "@googlemaps/js-api-loader";
 
+const response = await fetch(`${apiBaseUrl}/api/locations`); // Fetch locations from API
+
 const gAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 let map;
 let center;
