@@ -1,6 +1,6 @@
 import { Loader } from "@googlemaps/js-api-loader";
-
-const locationResponse = await fetch(`${apiBaseUrl}/api/locations`); // Fetch locations from API
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+//const locationResponse = await fetch(`${apiBaseUrl}/api/locations`); // Fetch locations from API
 
 const gAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 let map;
@@ -12,13 +12,6 @@ const loader = new Loader({
   version: "weekly",
   libraries: ["places"], // Loads places library for autocomplete field
   language: "en",
-});
-
-// Event Listener for onSubmit
-document.getElementById("locationForm").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const locationInput = document.getElementById("locationInput").value;
-  findPlaces(locationInput);
 });
 
 loader.load().then(() => {
@@ -136,11 +129,22 @@ async function findPlaces(locationQuery) {
     console.log(`Region: ${state}`);
     console.log(`Zip Code: ${zipCode}`);
     console.log(`Country Name: ${addressElements[3]}`);
+
+    // create json object
+    const newLocation = {
+      fullAddress: `${addressElements[0]}, ${addressElements[1]}, ${addressElements[2]}, ${addressElements[3]}`,
+      street: `${addressElements[0]}`,
+      city: `${addressElements[1]}`,
+      state: `${state}`,
+      zip: `${zipCode}`,
+      country: `${addressElements[3]}`,
+    };
+
+    // POST newLocation
+    addLocation(newLocation);
+    console.log(`New Location: ${newLocation}`);
   }
 }
-
-//call findPlaces
-findPlaces();
 
 //GET all locations
 fetch(`${apiBaseUrl}/api/locations`)
@@ -150,4 +154,22 @@ fetch(`${apiBaseUrl}/api/locations`)
   })
   .catch((error) => console.error(error));
 
-//POST new location
+//POST new locations
+async function addLocation(location) {
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/locations`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(location),
+    });
+    if (response.ok) {
+      console.log("Location added");
+    } else {
+      console.error("Failed to add location");
+    }
+  } catch (error) {
+    console.error("Failed to add location", error);
+  }
+}
