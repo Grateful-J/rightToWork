@@ -1,23 +1,22 @@
 import { Loader } from "@googlemaps/js-api-loader";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-//const locationResponse = await fetch(`${apiBaseUrl}/api/locations`); // Fetch locations from API
-
 const gAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 let map;
-let center;
+let autocomplete;
 
 //Loads Google Maps API
 const loader = new Loader({
   apiKey: gAPIKey,
   version: "weekly",
-  libraries: ["places"], // Loads places library for autocomplete field
+  libraries: ["places", "marker"], // Loads places library for autocomplete field
   language: "en",
 });
 
-loader.load().then(() => {
+loader.load().then(async () => {
   const mapOptions = {
     center: { lat: 36.171563, lng: -115.1391009 },
     zoom: 8,
+    mapId: `r2w-Map-Tracker`,
   };
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
@@ -25,6 +24,8 @@ loader.load().then(() => {
   const input = document.getElementById("locationInput"); // Your input element for location
   autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo("bounds", map); // Bias autocomplete results towards map viewport
+
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   // Set up event listener on autocomplete to handle place selection
   autocomplete.addListener("place_changed", () => {
@@ -42,8 +43,10 @@ loader.load().then(() => {
       map.setZoom(17); // Why not zoom in a bit?
     }
 
-    // Create a marker for the selected place
-    new google.maps.Marker({
+    // Clear previous markers and create a new marker at selected location
+    if (window.marker) window.marker.setMap(null);
+
+    window.marker = new AdvancedMarkerElement({
       map: map,
       position: place.geometry.location,
     });
@@ -59,36 +62,11 @@ document.getElementById("locationForm").addEventListener("submit", async (event)
   findPlaces(locationInput);
 });
 
-// Set up event listener on autocomplete to handle place selection
-autocomplete.addListener("place_changed", () => {
-  const place = autocomplete.getPlace();
-
-  if (!place.geometry) {
-    window.alert("No details available for input: '" + place.name + "'");
-    return;
-  }
-
-  // Ensure the map centers on the place just selected
-  if (place.geometry.viewport) {
-    map.fitBounds(place.geometry.viewport);
-  } else {
-    map.setCenter(place.geometry.location);
-    map.setZoom(17); // Adjust zoom level as needed
-  }
-
-  // Clear previous markers and create a new marker at the selected place
-  if (window.marker) window.marker.setMap(null); // Remove previous marker if it exists
-  window.marker = new google.maps.Marker({
-    map: map,
-    position: place.geometry.location,
-  });
-});
-
 async function findPlaces(locationQuery) {
   const { Place } = await google.maps.importLibrary("places");
   const request = {
     textQuery: locationQuery,
-    fields: ["location", "adrFormatAddress"],
+    fields: ["displayName", "location", "adrFormatAddress"],
     language: "en-US",
     maxResultCount: 8,
     minRating: 3.2,
@@ -105,7 +83,7 @@ async function findPlaces(locationQuery) {
     map.setCenter(newMapCenter);
     map.setZoom(10);
 
-    const marker = new google.maps.Marker({
+    new google.maps.marker({
       map,
       anchorPoint: new google.maps.Point(location),
     });
@@ -117,6 +95,8 @@ async function findPlaces(locationQuery) {
 
     // Split by comma and map through each to trim whitespace
     const addressElements = cleanAddress.split(",").map((element) => element.trim());
+
+    console.log(displayName);
 
     console.log(`Street Address: ${addressElements[0]}`);
     console.log(`Locality: ${addressElements[1]}`);
@@ -145,14 +125,6 @@ async function findPlaces(locationQuery) {
     console.log(`New Location: ${newLocation}`);
   }
 }
-
-//GET all locations
-fetch(`${apiBaseUrl}/api/locations`)
-  .then((response) => response.json())
-  .then((locations) => {
-    console.log(locations);
-  })
-  .catch((error) => console.error(error));
 
 //POST new locations
 async function addLocation(location) {

@@ -1,7 +1,7 @@
 import "./style.css";
 import "./utils/states";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-const response = await fetch(`${apiBaseUrl}/api/jobs`);
+//const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
 //Global variable for jobs
 let globalJobs = [];
@@ -217,4 +217,16 @@ function resetForm() {
 
 //TODO: GET all locations
 
-//TODO:
+//TODO: add user login
+
+//TODO: add user logout
+
+//TODO: add user registration
+
+//TODO: add user profile
+
+//TODO: add user profile edit
+
+//TODO: add user reset password
+
+//TODO: add user reset password
