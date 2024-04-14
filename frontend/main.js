@@ -244,6 +244,8 @@ function resetForm() {
 //TODO: Labor > Create formula for DT formulat (Hours 12+ 2x Rate)
 
 //TODO:create Labor API
+//TODO: add option to assign rate to client
+//TODO: add editing mode for labor
 //TODO: create expenses tracker
 //TODO: create expenses API
 //TODO: create expenses UI
