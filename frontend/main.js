@@ -229,4 +229,21 @@ function resetForm() {
 
 //TODO: add user reset password
 
-//TODO: add user reset password
+//TODO: add user forgot password
+
+//TODO: add user change password
+
+//TODO: add toggle for isFreelance? / applies to NABET rule set
+
+//TODO: add labor tracking module
+
+//TODO: Labor > Create formula for 10 Hour Day (minimum)
+//TODO: Labor > Create formula for 8 Hour Day (CA rate)
+
+//TODO: Labor > Create OT formula (hours 10 - 12 1.5x Rate)
+//TODO: Labor > Create formula for DT formulat (Hours 12+ 2x Rate)
+
+//TODO:create Labor API
+//TODO: create expenses tracker
+//TODO: create expenses API
+//TODO: create expenses UI
