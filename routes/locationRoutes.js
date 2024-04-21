@@ -12,17 +12,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-/* //POST new location
-router.post("/", async (req, res) => {
-  const newLocation = new Location(req.body);
-  try {
-    const savedLocation = await newLocation.save();
-    res.status(201).json(savedLocation);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}); */
-
 // POST route to add a new location
 router.post("/", async (req, res) => {
   try {
