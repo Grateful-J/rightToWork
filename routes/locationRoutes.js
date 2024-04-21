@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//POST new location
+/* //POST new location
 router.post("/", async (req, res) => {
   const newLocation = new Location(req.body);
   try {
@@ -20,6 +20,31 @@ router.post("/", async (req, res) => {
     res.status(201).json(savedLocation);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+}); */
+
+// POST route to add a new location
+router.post("/", async (req, res) => {
+  try {
+    const { name, fullAddress } = req.body;
+
+    // Check if the location already exists based on Venue Name or Full Address
+    const existingLocation = await Location.findOne({ name, fullAddress });
+
+    if (existingLocation) {
+      // Location already exists, return a 409 Conflict status
+      return res.status(409).json({ error: "Location already exists" });
+    }
+
+    // Location doesn't exist, proceed with adding it to the database
+    const newLocation = new Location(req.body);
+
+    await newLocation.save();
+
+    res.status(201).json(newLocation);
+  } catch (error) {
+    console.error("Error adding location:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
