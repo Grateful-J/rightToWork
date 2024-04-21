@@ -1,5 +1,6 @@
 import "./style.css";
 import "./utils/states";
+import "./googleMaps/placesAutoFill";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 //const response = await fetch(`${apiBaseUrl}/api/jobs`);
 
@@ -36,14 +37,14 @@ document.querySelector("#startDate").addEventListener("change", () => {
 async function addorUpdateJob(event) {
   event.preventDefault();
 
-  // Check if state is valid
+  /*   // Check if state is valid
   const locationInput = document.querySelector("#location").value;
   const isValidState = Array.from(document.querySelector("#states-datalist").options).some((option) => option.value === locationInput);
 
   if (!isValidState) {
     alert("Please enter a valid state");
     return;
-  }
+  } */
 
   // Get values from form
   const job = {
