@@ -1,10 +1,13 @@
+// Loads Google Maps API
 import { Loader } from "@googlemaps/js-api-loader";
+
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const gAPIKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
 let map;
 let autocomplete;
 
-//Loads Google Maps API
+// Loads Google Maps API
 const loader = new Loader({
   apiKey: gAPIKey,
   version: "weekly",
@@ -83,20 +86,26 @@ async function findPlaces(locationQuery) {
     map.setCenter(newMapCenter);
     map.setZoom(10);
 
-    new google.maps.marker({
+    // Corrected / updated marker instantiation
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+    const marker = new AdvancedMarkerElement({
       map,
-      anchorPoint: new google.maps.Point(location),
+      position: newMapCenter,
     });
 
     // Chooses top search result
     let adrFormatAddress = places[0].adrFormatAddress;
+
+    // Extract display name
+    let displayName = places[0].displayName;
+    console.log(displayName);
+
     // Extract text from HTML
     let cleanAddress = adrFormatAddress.replace(/<[^>]*>/g, "");
 
     // Split by comma and map through each to trim whitespace
     const addressElements = cleanAddress.split(",").map((element) => element.trim());
-
-    console.log(displayName);
 
     console.log(`Street Address: ${addressElements[0]}`);
     console.log(`Locality: ${addressElements[1]}`);
@@ -112,6 +121,7 @@ async function findPlaces(locationQuery) {
 
     // create json object
     const newLocation = {
+      name: `${displayName}`,
       fullAddress: `${addressElements[0]}, ${addressElements[1]}, ${addressElements[2]}, ${addressElements[3]}`,
       street: `${addressElements[0]}`,
       city: `${addressElements[1]}`,
@@ -126,7 +136,7 @@ async function findPlaces(locationQuery) {
   }
 }
 
-//POST new locations
+// POST new locations
 async function addLocation(location) {
   try {
     const response = await fetch(`${apiBaseUrl}/api/locations`, {
