@@ -155,3 +155,5 @@ async function addLocation(location) {
     console.error("Failed to add location", error);
   }
 }
+
+export { findPlaces, addLocation };
