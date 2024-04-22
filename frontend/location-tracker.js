@@ -10,7 +10,7 @@ let autocomplete;
 const loader = new Loader({
   apiKey: gAPIKey,
   version: "weekly",
-  libraries: ["places"], // Remove "marker" library
+  libraries: ["places"],
   language: "en",
 });
 
@@ -33,7 +33,7 @@ loader.importLibrary("places").then(async () => {
     fields: ["address_components", "geometry", "icon", "name"],
     strictBounds: false,
   };
-  autocomplete = new google.maps.places.Autocomplete(input, options); // Remove "const" to assign to global variable
+  autocomplete = new google.maps.places.Autocomplete(input, options);
 });
 
 //Global variable for jobs
@@ -239,46 +239,3 @@ function resetForm() {
   const submitBtn = document.querySelector('button[type="submit"]');
   submitBtn.textContent = "Add Job";
 }
-
-//TODO: Hide delete unless in edit mode
-
-//TODO:Move JS job functions to new module
-
-//TODO: look into better state management for "edit mode"
-
-//TODO: import code from mapsBasic.js and utilize autocomeplete for location field
-
-//TODO: GET all locations
-
-//TODO: add user login
-
-//TODO: add user logout
-
-//TODO: add user registration
-
-//TODO: add user profile
-
-//TODO: add user profile edit
-
-//TODO: add user reset password
-
-//TODO: add user forgot password
-
-//TODO: add user change password
-
-//TODO: add toggle for isFreelance? / applies to NABET rule set
-
-//TODO: add labor tracking module
-
-//TODO: Labor > Create formula for 10 Hour Day (minimum)
-//TODO: Labor > Create formula for 8 Hour Day (CA rate)
-
-//TODO: Labor > Create OT formula (hours 10 - 12 1.5x Rate)
-//TODO: Labor > Create formula for DT formulat (Hours 12+ 2x Rate)
-
-//TODO:create Labor API
-//TODO: add option to assign rate to client
-//TODO: add editing mode for labor
-//TODO: create expenses tracker
-//TODO: create expenses API
-//TODO: create expenses UI
